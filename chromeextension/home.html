@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Bootstrap 101 Template</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+      <link rel ="stylesheet" href="css/main.css">
+     <link href="css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <body>
+    <ul id="tabs" class="nav nav-tabs nav-justified" data-tabs="tabs">
+        <li id = "homenav" class="active"><a href="home.html" data-toggle="tab">Home</a></li>
+        <li id = "querynav"><a href="query.html" data-toggle="tab">Query</a></li>
+        <li id = "parsenav"><a href="parse.html" data-toggle="tab">Parse</a></li>
+    </ul>
+
+    <div class = "homepage">
+      Homepage
+
+      <div class = "dagrlist">
+      d
+      </div>
+    </div> <!-- /homepage -->
+
+    <div class = "querypage">
+      Querypage
+      <button type="button" data-loading-text="Querying..." class="btn btn-primary" id = "queryselectall">
+  Select all from DB
+</button>
+    </div> <!-- /querypage -->
+
+    <div class = "parsepage">
+
+    <button type="button" data-loading-text="Parsing..." class="btn btn-primary" id = "parsecurrentpagebutton">
+  Parse current page
+</button>
+
+    <div class="parse-form">
+    <div class="input-group parse-form">
+    <input type="text" class="form-control">
+      <span class="input-group-btn">
+        <button class="btn btn-default" type="button">Go!</button>
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /parse-form -->
+  </div> <!-- /parsepage -->
+
+    <script src="js/jquery-1.10.2.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <script src="js/application.js"></script>
+  </body>
+</html>

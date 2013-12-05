@@ -1,0 +1,29 @@
+body {
+	width: 800px;
+	height: 400px;
+}
+
+.parse-form {
+	margin-top: 10px;
+}
+
+.input-group.parse-form {
+	width:600px;
+}
+
+.homepage {
+		width: 760px;
+	height: 350px;
+}
+
+.querypage {
+	width: 760px;
+	height: 350px;
+	display: none;
+}
+
+.parsepage {
+		width: 760px;
+	height: 350px;
+	display:none;
+}
