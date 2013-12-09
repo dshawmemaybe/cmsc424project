@@ -57,4 +57,84 @@ $("#dagrhome").click(function() {
 });
 });
 
+$("#metadataquery").click(function() {
+	$.ajax({
+    url : "http://localhost:3000/metadataquery",
+    type: "GET",
+    dataType: "HTML",
+    success: function(data, textStatus, jqXHR)
+    {
+    	$("#content").html(data);
+	},
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ 		alert(errorThrown);
+    }
+});
+});
+
+$("#duplicatequery").click(function() {
+	$.ajax({
+    url : "http://localhost:3000/duplicatequery",
+    type: "GET",
+    dataType: "HTML",
+    success: function(data, textStatus, jqXHR)
+    {
+    	$("#content").html(data);
+	},
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ 		alert(errorThrown);
+    }
+});
+});
+
+$("#orphanquery").click(function() {
+	$.ajax({
+    url : "http://localhost:3000/orphanquery",
+    type: "GET",
+    dataType: "HTML",
+    success: function(data, textStatus, jqXHR)
+    {
+    	$("#content").html(data);
+	},
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ 		alert(errorThrown);
+    }
+});
+});
+
+$("#reachquery").click(function() {
+	$.ajax({
+    url : "http://localhost:3000/reachquery",
+    type: "GET",
+    dataType: "HTML",
+    success: function(data, textStatus, jqXHR)
+    {
+    	$("#content").html(data);
+	},
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ 		alert(errorThrown);
+    }
+});
+});
+
+$("#timequery").click(function() {
+	$.ajax({
+    url : "http://localhost:3000/timequery",
+    type: "GET",
+    dataType: "HTML",
+    success: function(data, textStatus, jqXHR)
+    {
+    	$("#content").html(data);
+	},
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ 		alert(errorThrown);
+    }
+});
+});
+
 });

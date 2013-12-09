@@ -1,7 +1,15 @@
 Cmsc424project::Application.routes.draw do
   post "welcome" => 'posts#index'
 
+  get "/metadataquery" => "queries#metadataquery"
+  get "/duplicatequery" => "queries#duplicatequery"
+  get "/orphanquery" => "queries#orphanquery"
+  get "/timequery" => "queries#timequery"
+  get "/reachquery" => "queries#reachquery"
+
   resources :posts 
+
+  resources :queries 
 
 
 
