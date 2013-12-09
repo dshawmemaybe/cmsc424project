@@ -3,49 +3,23 @@
   <head>
     <title>Bootstrap 101 Template</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-      <link rel ="stylesheet" href="css/main.css">
+      
      <link href="css/bootstrap.min.css" rel="stylesheet">
+     <link rel ="stylesheet" href="css/main.css">
   </head>
   <body>
-    <ul id="tabs" class="nav nav-tabs nav-justified" data-tabs="tabs">
-        <li id = "homenav" class="active"><a href="home.html" data-toggle="tab">Home</a></li>
-        <li id = "querynav"><a href="query.html" data-toggle="tab">Query</a></li>
-        <li id = "parsenav"><a href="parse.html" data-toggle="tab">Parse</a></li>
-    </ul>
+    <div class = "jumbotron">
+      <h1>MMDA: A Multi-Media Data Aggregator</h1>
 
-    <div class = "homepage">
-      Homepage
-
-      <div class = "dagrlist">
-      d
-      </div>
-    </div> <!-- /homepage -->
-
-    <div class = "querypage">
-      Querypage
-      <button type="button" data-loading-text="Querying..." class="btn btn-primary" id = "queryselectall">
-  Select all from DB
-</button>
-    </div> <!-- /querypage -->
-
-    <div class = "parsepage">
-
-    <button type="button" data-loading-text="Parsing..." class="btn btn-primary" id = "parsecurrentpagebutton">
-  Parse current page
-</button>
-
-    <div class="parse-form">
-    <div class="input-group parse-form">
-    <input type="text" class="form-control">
-      <span class="input-group-btn">
-        <button class="btn btn-default" type="button">Go!</button>
-      </span>
-    </div><!-- /input-group -->
-  </div><!-- /parse-form -->
-  </div> <!-- /parsepage -->
-
-    <script src="js/jquery-1.10.2.js"></script>
+      <form name = "index" accept-charset="UTF-8" action="http://localhost:3000/welcome" method="post" >
+      <input type="submit" value="Start DAGRing!" />
+      </form>
+    </div> <!-- /jumbotron-->
+    <div class = "page-header">
+    <h2 id = "left"> Weishin Chen </h2>
+    <h2 id ="right">Danny Shaw </h2>
+  </body>
+  <script src="js/jquery-1.10.2.js"></script>
     <script src="js/bootstrap.min.js"></script>
     <script src="js/application.js"></script>
-  </body>
 </html>

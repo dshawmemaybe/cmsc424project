@@ -6,7 +6,11 @@ gem 'rails', '3.2.13'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'pg'
-
+gem 'carrierwave'
+gem 'uuid'
+gem 'paperclip', '~> 3.0'
+gem 'jquery-fileupload-rails'
+gem 'green_shoes', '~> 1.1.374'
 
 # Gems used only for assets and not required
 # in production environments by default.

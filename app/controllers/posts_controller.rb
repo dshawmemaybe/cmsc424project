@@ -1,11 +1,15 @@
+require 'uuid'
+require 'find'
+
 class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    @posts = Post.all
+    puts "test"
+    @posts = Post.find_by_sql("SELECT * FROM POSTS")
 
     respond_to do |format|
-      format.html # index.html.erb
+      format.html {}
       format.json { render json: @posts }
     end
   end
@@ -37,10 +41,45 @@ class PostsController < ApplicationController
     @post = Post.find(params[:id])
   end
 
+  def ask_open_file path = nil
+    dialog_chooser "Open File...", Gtk::FileChooser::ACTION_OPEN, Gtk::Stock::OPEN, path
+  end
+
+  def dialog_chooser title, action, button, path
+    $dde = true
+    dialog = Gtk::FileChooserDialog.new(
+      title,
+      get_win,
+      action,
+      nil,
+      [Gtk::Stock::CANCEL, Gtk::Dialog::RESPONSE_CANCEL],
+      [button, Gtk::Dialog::RESPONSE_ACCEPT]
+    )
+    dialog.select_multiple = true
+    dialog.current_folder = path if path
+    ret = dialog.run == Gtk::Dialog::RESPONSE_ACCEPT ? dialog.filenames : nil
+    dialog.destroy
+    ret
+  end
   # POST /posts
   # POST /posts.json
   def create
-    @post = Post.new(params[:post])
+    filename = ask_open_file
+
+    @post = Post.new()
+    @post.description = filename
+=begin
+    filename = params[:post][:avatar]
+
+    uuid = UUID.new
+    
+    fs = File::Stat.new(filename)
+    time = fs.ctime
+    mtime = fs.mtime
+    size = fs.size
+    @post.description = "UUID: #{uuid.generate}\n Path: #{filename}\n Created: #{time}\n Modified: #{mtime}\n Size: #{size}"
+    @post.name = time
+=end
 
     respond_to do |format|
       if @post.save

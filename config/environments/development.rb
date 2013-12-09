@@ -32,6 +32,8 @@ Cmsc424project::Application.configure do
   # Do not compress assets
   config.assets.compress = false
 
+  Paperclip.options[:command_path] = 'C:/Program Files/ImageMagick-6.8.3-Q16/'
+
   # Expands the lines which load the assets
   config.assets.debug = true
 end

@@ -1,3 +1,5 @@
 class Post < ActiveRecord::Base
-  attr_accessible :description, :name
+  mount_uploader :avatar, AvatarUploader
+  attr_accessible :description, :name, :avatar
+
 end

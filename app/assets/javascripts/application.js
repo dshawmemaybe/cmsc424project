@@ -12,4 +12,14 @@
 //
 //= require jquery
 //= require jquery_ujs
+//= require jquery-fileupload/basic
 //= require_tree .
+$(function() {
+$(".panel-heading").click(function(){
+    if ($(this).hasClass("active")){$(this).removeClass("active")}
+      else {
+        $(".panel-heading").removeClass("active");
+    $(this).addClass("active");
+  }
+  });
+});

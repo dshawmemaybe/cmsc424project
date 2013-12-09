@@ -5,10 +5,106 @@
   <%= stylesheet_link_tag    "application", :media => "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
 </head>
 <body>
+<!--
+<nav class="navbar navbar-default " role="navigation">
 
+  <div class="navbar-header">
+    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+      <span class="sr-only">Toggle navigation</span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+      <span class="icon-bar"></span>
+    </button>
+    <a class="navbar-brand" href="#">MMDA</a>
+  </div>
+
+
+  <div class="collapse navbar-collapse" id="main-navbar">
+    <ul class="nav navbar-nav">
+      <li class="active"><a href="#">DAGR Index</a></li>
+      <li><a href="#">DAGR Insertion</a></li>
+      <li class="dropdown">
+        <div class="dropdown">
+  <a id="dLabel" role="button" data-toggle="dropdown" data-target="#" href="/page.html">
+    Dropdown <span class="caret"></span>
+  </a>
+
+
+  <ul class="dropdown-menu" role="menu" aria-labelledby="dLabel">
+        <ul class="dropdown-menu">
+          <li><a href="#">DAGR Metadata Query</a></li>
+          <li><a href="#">Orphan and Sterile Reports</a></li>
+          <li><a href="#">Reach Query</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Time-Range DAGR Report</a></li>
+          <li class="divider"></li>
+          <li><a href="#">Identify Duplicate Content</a></li>
+        </ul>
+        </div>
+      </li>
+    </ul>
+    <form class="navbar-form navbar-right" role="search">
+      <div class="form-group">
+        <input type="text" class="form-control" placeholder="Search">
+      </div>
+      <button type="submit" class="btn btn-default">Submit</button>
+    </form>
+    
+  </div>
+</nav>
+-->
+<div id = "sidebar">
+<div class="panel-group" id="accordion">
+  <div class="panel panel-default">
+    <div class="panel-heading active">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseOne" class = "drophead">
+          DAGR Home 
+        </a>
+    </div>
+ <div id="collapseOne" class="panel-collapse collapse">
+ </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseTwo" class = "drophead">
+         	DAGR Insertion
+        </a>
+    </div>
+    <div id="collapseTwo" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<ul class = "queries">
+      		<li><a href="#">HTML Documents</a></li>
+          <li><a href="#">Non-HTML Documents</a></li>
+      	</ul>
+      </div>
+    </div>
+  </div>
+  <div class="panel panel-default">
+    <div class="panel-heading">
+        <a data-toggle="collapse" data-parent="#accordion" href="#collapseThree" class = "drophead">
+          Queries
+        </a>
+    </div>
+    <div id="collapseThree" class="panel-collapse collapse">
+      <div class="panel-body">
+      	<ul class = "queries">
+      		<li><a href="#">DAGR Metadata Query</a></li>
+          <li><a href="#">Orphan and Sterile Reports</a></li>
+          <li><a href="#">Reach Query</a></li>
+          <li><a href="#">Time-Range DAGR Report</a></li>
+          <li><a href="#">Identify Duplicate Content</a></li>
+      	</ul>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+<div id = "content">
 <%= yield %>
-
+</div>
 </body>
+
 </html>
