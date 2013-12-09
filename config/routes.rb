@@ -1,5 +1,6 @@
 Cmsc424project::Application.routes.draw do
   post "welcome" => 'posts#index'
+  get "/mainindex" => "posts#mainindex"
 
   get "/metadataquery" => "queries#metadataquery"
   get "/duplicatequery" => "queries#duplicatequery"

@@ -43,7 +43,7 @@ $("#htmlinsert").click(function() {
 
 $("#dagrhome").click(function() {
 	$.ajax({
-    url : "http://localhost:3000/posts",
+    url : "http://localhost:3000/mainindex",
     type: "GET",
     dataType: "HTML",
     success: function(data, textStatus, jqXHR)

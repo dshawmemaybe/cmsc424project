@@ -9,6 +9,16 @@ class PostsController < ApplicationController
     @posts = Post.find_by_sql("SELECT * FROM POSTS")
 
     respond_to do |format|
+      format.html {}
+      format.json { render json: @posts }
+    end
+  end
+
+  def mainindex
+    puts "test"
+    @posts = Post.find_by_sql("SELECT * FROM POSTS")
+
+    respond_to do |format|
       format.html { render action: "index", layout: false}
       format.json { render json: @posts }
     end
