@@ -9,7 +9,7 @@ class PostsController < ApplicationController
     @posts = Post.find_by_sql("SELECT * FROM POSTS")
 
     respond_to do |format|
-      format.html {}
+      format.html { render action: "index", layout: false}
       format.json { render json: @posts }
     end
   end
@@ -31,7 +31,7 @@ class PostsController < ApplicationController
     @post = Post.new
 
     respond_to do |format|
-      format.html # new.html.erb
+      format.html { render action: "new", layout: false}# new.html.erb
       format.json { render json: @post }
     end
   end

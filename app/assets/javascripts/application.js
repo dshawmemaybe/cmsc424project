@@ -15,6 +15,7 @@
 //= require jquery-fileupload/basic
 //= require_tree .
 $(function() {
+// Sidebar active state activation
 $(".panel-heading").click(function(){
     if ($(this).hasClass("active")){$(this).removeClass("active")}
       else {
@@ -22,4 +23,38 @@ $(".panel-heading").click(function(){
     $(this).addClass("active");
   }
   });
+
+// AJAX request for inserting html documents
+$("#htmlinsert").click(function() {
+	$.ajax({
+    url : "http://localhost:3000/posts/new",
+    type: "GET",
+    dataType: "HTML",
+    success: function(data, textStatus, jqXHR)
+    {
+    	$("#content").html(data);
+	},
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ 		alert(errorThrown);
+    }
+});
+});
+
+$("#dagrhome").click(function() {
+	$.ajax({
+    url : "http://localhost:3000/posts",
+    type: "GET",
+    dataType: "HTML",
+    success: function(data, textStatus, jqXHR)
+    {
+    	$("#content").html(data);
+	},
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+ 		alert(errorThrown);
+    }
+});
+});
+
 });
