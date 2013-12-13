@@ -1,0 +1,25 @@
+<h1>Listing dagrs</h1>
+
+<table>
+  <tr>
+    <th>Guid</th>
+    <th>Name</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @dagrs.each do |dagr| %>
+  <tr>
+    <td><%= dagr.guid %> </td>
+    <td><%= dagr.name %> </td>
+    <td><%= link_to 'Show', dagr %></td>
+    <td><%= link_to 'Edit', edit_dagr_path(dagr) %></td>
+    <td><%= link_to 'Destroy', dagr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<%= link_to 'New Dagr', new_dagr_path %>

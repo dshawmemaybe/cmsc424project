@@ -1,6 +1,9 @@
 Cmsc424project::Application.routes.draw do
-  post "welcome" => 'posts#index'
-  get "/mainindex" => "posts#mainindex"
+  resources :dagrs
+
+
+  post "welcome" => 'dagrs#index'
+  get "/mainindex" => "dagrs#mainindex"
 
   get "/metadataquery" => "queries#metadataquery"
   get "/duplicatequery" => "queries#duplicatequery"

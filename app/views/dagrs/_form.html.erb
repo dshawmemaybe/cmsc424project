@@ -1,0 +1,17 @@
+<%= form_for(@dagr) do |f| %>
+  <% if @dagr.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@dagr.errors.count, "error") %> prohibited this dagr from being saved:</h2>
+
+      <ul>
+      <% @dagr.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

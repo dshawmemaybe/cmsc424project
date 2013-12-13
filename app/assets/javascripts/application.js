@@ -27,7 +27,7 @@ $(".panel-heading").click(function(){
 // AJAX request for inserting html documents
 $("#htmlinsert").click(function() {
 	$.ajax({
-    url : "http://localhost:3000/posts/new",
+    url : "http://localhost:3000/dagrs/new",
     type: "GET",
     dataType: "HTML",
     success: function(data, textStatus, jqXHR)

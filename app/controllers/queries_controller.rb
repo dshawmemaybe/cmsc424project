@@ -26,7 +26,7 @@ class QueriesController < ApplicationController
 
   def timequery
     puts "test"
-    @posts = Post.find_by_sql("SELECT * FROM POSTS")
+    @posts = Post.find_by_sql("SELECT * FROM POSTS WHERE EXTRACT(HOUR FROM Created_at) = 4")
 
     respond_to do |format|
       format.html { render action: "timequery", layout: false}

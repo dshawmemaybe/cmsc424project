@@ -1,2 +1,27 @@
 <h1>Time-Range DAGR Report</h1>
 
+<table>
+  <tr>
+    <th>Name</th>
+    <th>Description</th>
+    <th>Avatar</th>
+    <th>Created_at</th>
+    <th>Updated_at</th>
+    <th></th>
+    <th></th>
+    <th></th>
+  </tr>
+
+<% @posts.each do |post| %>
+  <tr>
+    <td><%= post.name %></td>
+    <td><%= post.description %></td>
+      <td><%= post.avatar %></td>
+      <td><%= post.created_at %></td>
+      <td><%= post.updated_at %></td>
+    <td><%= link_to 'Show', post %></td>
+    <td><%= link_to 'Edit', edit_post_path(post) %></td>
+    <td><%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+  </tr>
+<% end %>
+</table>

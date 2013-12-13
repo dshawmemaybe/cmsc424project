@@ -5,7 +5,6 @@ class PostsController < ApplicationController
   # GET /posts
   # GET /posts.json
   def index
-    puts "test"
     @posts = Post.find_by_sql("SELECT * FROM POSTS")
 
     respond_to do |format|
@@ -15,7 +14,6 @@ class PostsController < ApplicationController
   end
 
   def mainindex
-    puts "test"
     @posts = Post.find_by_sql("SELECT * FROM POSTS")
 
     respond_to do |format|
