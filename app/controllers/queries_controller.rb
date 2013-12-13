@@ -6,51 +6,51 @@ class QueriesController < ApplicationController
   # GET /posts.json
   def metadataquery
     puts "test"
-    @posts = Post.find_by_sql("SELECT * FROM POSTS")
+    @dagrs = Dagrs.find_by_sql("SELECT * FROM DAGRS")
 
     respond_to do |format|
       format.html { render action: "metadataquery", layout: false}
-      format.json { render json: @posts }
+      format.json { render json: @dagrs }
     end
   end
 
   def duplicatequery
     puts "test"
-    @posts = Post.find_by_sql("SELECT * FROM POSTS")
+    @dagrs = Dagrs.find_by_sql("SELECT * FROM DAGRS")
 
     respond_to do |format|
       format.html { render action: "duplicatequery", layout: false}
-      format.json { render json: @posts }
+      format.json { render json: @dagrs }
     end
   end
 
   def timequery
     puts "test"
-    @posts = Post.find_by_sql("SELECT * FROM POSTS WHERE EXTRACT(HOUR FROM Created_at) = 4")
+     @dagrs = Dagrs.find_by_sql("SELECT * FROM DAGRS")
 
     respond_to do |format|
       format.html { render action: "timequery", layout: false}
-      format.json { render json: @posts }
+      format.json { render json: @dagrs }
     end
   end
 
   def reachquery
     puts "test"
-    @posts = Post.find_by_sql("SELECT * FROM POSTS")
+    @dagrs = Dagrs.find_by_sql("SELECT * FROM DAGRS")
 
     respond_to do |format|
       format.html { render action: "reachquery", layout: false}
-      format.json { render json: @posts }
+      format.json { render json: @dagrs }
     end
   end
 
   def orphanquery
     puts "test"
-    @posts = Post.find_by_sql("SELECT * FROM POSTS")
+    @dagrs = Dagrs.find_by_sql("SELECT * FROM DAGRS")
 
     respond_to do |format|
       format.html { render action: "orphanquery", layout: false}
-      format.json { render json: @posts }
+      format.json { render json: @dagrs }
     end
   end
 
