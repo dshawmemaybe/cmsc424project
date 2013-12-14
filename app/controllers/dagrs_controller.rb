@@ -90,16 +90,20 @@ class DagrsController < ApplicationController
   # POST /dagrs.json
   def create
     filename = ask_open_file
-
+    if filename == nil
+      redirect_to "http://localhost:3000/dagrs"
+    else
     uuid = UUID.new.generate.to_s
     name = filename[0]
-
-   
 
     #Dagr.connection.execute("INSERT INTO DAGRS (guid, name) values(#{uuid}, #{name})")
     @dagr = Dagr.new
     @dagr.dagr_guid = uuid
-    @dagr.name = name
+    if params[:dagr]["name"].empty? 
+      @dagr.name = name
+    else
+      @dagr.name = params[:dagr]["name"]
+    end  
     @dagr.save
    
     @metadata = Metadata.new
@@ -124,14 +128,10 @@ class DagrsController < ApplicationController
     @mediafile.save
 
     respond_to do |format|
-      if @dagr.save
         format.html { redirect_to @dagr, notice: 'Dagr was successfully created.' }
         format.json { render json: @dagr, status: :created, location: @dagr }
-      else
-        format.html { render action: "new" }
-        format.json { render json: @dagr.errors, status: :unprocessable_entity }
-      end
     end
+  end
   end
 
   # PUT /dagrs/1
