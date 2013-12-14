@@ -17,7 +17,7 @@
 $(function() {
 // Sidebar active state activation
 $(".panel-heading").click(function(){
-    if ($(this).hasClass("active")){$(this).removeClass("active")}
+    if ($(this).hasClass("active") && !$(this).hasClass("home")){$(this).removeClass("active")}
       else {
         $(".panel-heading").removeClass("active");
     $(this).addClass("active");

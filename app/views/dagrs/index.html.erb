@@ -4,6 +4,10 @@
   <tr>
     <th>Guid</th>
     <th>Name</th>
+    <th>DagrCreationtime</th>
+    <th>DagrDeletiontime</th>
+    <th>Has_components</th>
+    <th>Deleted</th>
     <th></th>
     <th></th>
     <th></th>
@@ -13,6 +17,10 @@
   <tr>
     <td><%= dagr.dagr_guid %> </td>
     <td><%= dagr.name %> </td>
+    <td><%= dagr.dagrcreationtime %> </td>
+    <td><%= dagr.dagrdeletiontime %> </td>
+    <td><%= dagr.has_components %> </td>
+    <td><%= dagr.deleted %> </td>
     <td><%= link_to 'Show', dagr %></td>
     <td><%= link_to 'Edit', edit_dagr_path(dagr) %></td>
     <td><%= link_to 'Destroy', dagr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
@@ -60,10 +68,8 @@
     <th>Dagr Guid</th>
     <th>Filetype</th>
     <th>Filesizebytes</th>
-    <th>Creationtime</th>
+    <th>Filecreationtime</th>
     <th>Lastmodifiedtime</th>
-    <th>Deletiontime</th>
-    <th>Has_components</th>
     <th>Creationauthor</th>
   </tr>
 
@@ -72,10 +78,8 @@
     <td><%= md.dagr_guid %> </td>
     <td><%= md.filetype %> </td>
     <td><%= md.filesizebytes %> </td>
-    <td><%= md.creationtime %> </td>
+    <td><%= md.filecreationtime %> </td>
     <td><%= md.lastmodifiedtime %> </td>
-    <td><%= md.deletiontime %> </td>
-    <td><%= md.has_components %> </td>
     <td><%= md.creationauthor %> </td>
   </tr>
 <% end %>
@@ -92,6 +96,21 @@
   <tr>
     <td><%= k.dagr_guid %> </td>
     <td><%= k.keyword %> </td>
+  </tr>
+<% end %>
+</table>
+
+<h1>Listing Annotations</h1>
+<table>
+<tr>
+    <th>Media Guid</th>
+    <th>Annotation</th>
+  </tr>
+
+<% @annotations.each do |a| %>
+  <tr>
+    <td><%= a.media_guid %> </td>
+    <td><%= a.annotation %> </td>
   </tr>
 <% end %>
 </table>

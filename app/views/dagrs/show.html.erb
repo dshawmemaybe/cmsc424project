@@ -1,37 +1,73 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Guid:</b>
-  <%= @dagr.dagr_guid %>
-</p>
+<table>
+  <tr>
+    <th>Guid</th>
+    <th>Name</th>
+    <th>DagrCreationtime</th>
+    <th>DagrDeletiontime</th>
+    <th>Has_components</th>
+    <th>Deleted</th>
+  </tr>
+  <tr>
+    <td><%= @dagr.dagr_guid %> </td>
+    <td><%= @dagr.name %> </td>
+    <td><%= @dagr.dagrcreationtime %> </td>
+    <td><%= @dagr.dagrdeletiontime %> </td>
+    <td><%= @dagr.has_components %> </td>
+    <td><%= @dagr.deleted %> </td>
+  </tr>
+</table>
 
-<p>
-  <b>Name:</b>
-  <%= @dagr.name %>
-</p>
-
+<h1>Metadata</h1>
 <table>
 	<tr>
     <th>Dagr Guid</th>
     <th>Filetype</th>
     <th>Filesizebytes</th>
-    <th>Creationtime</th>
+    <th>Filecreationtime</th>
     <th>Lastmodifiedtime</th>
-    <th>Deletiontime</th>
-    <th>Has_components</th>
     <th>Creationauthor</th>
   </tr>
   <tr>
     <td><%= @md.dagr_guid %> </td>
     <td><%= @md.filetype %> </td>
     <td><%= @md.filesizebytes %> </td>
-    <td><%= @md.creationtime %> </td>
+    <td><%= @md.filecreationtime %> </td>
     <td><%= @md.lastmodifiedtime %> </td>
-    <td><%= @md.deletiontime %> </td>
-    <td><%= @md.has_components %> </td>
     <td><%= @md.creationauthor %> </td>
   </tr>
+</table>
+<h1>Keywords</h1>
+<table>
+<% if !@keywords.nil?
+	@keywords.each do |k| %>
+	<tr>
+    <th>Keyword</th>
+  </tr>
+  <tr>
+    <td><%= k.keyword %> </td>
+  </tr>
+  <% end
+  end %>
+</table>
+
+<h1>Children connections</h1>
+<table>
+<% if !@connections.nil?
+	@connections.each do |c| %>
+	<tr>
+    <th>Parent_guid</th>
+    <th>Child_guid</th>
+  </tr>
+  <tr>
+    <td><%= c.parent_guid %> </td>
+    <td><%= c.child_guid %> </td>
+  </tr>
+  <% end
+  end %>
 </table>
 
 <%= link_to 'Edit', edit_dagr_path(@dagr) %> |
 <%= link_to 'Back', dagrs_path %>
+<%= link_to 'Destroy', @dagr, method: :delete, data: { confirm: 'Are you sure?' } %>

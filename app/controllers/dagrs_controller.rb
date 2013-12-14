@@ -1,4 +1,8 @@
+require 'dparser'
+require 'etc'
+
 class DagrsController < ApplicationController
+    include DagrsHelper
   # GET /dagrs
   # GET /dagrs.json
   def index
@@ -7,6 +11,7 @@ class DagrsController < ApplicationController
     @connections = Connection.find_by_sql("SELECT * FROM connections")
     @metadatas = Metadata.find_by_sql("SELECT * FROM metadatas")
     @keywords = Keyword.find_by_sql("SELECT * FROM keywords")
+    @annotations = Annotation.find_by_sql("SELECT * FROM annotations")
 
     respond_to do |format|
       format.html # index.html.erb
@@ -20,6 +25,7 @@ class DagrsController < ApplicationController
     @connections = Connection.find_by_sql("SELECT * FROM connections")
     @metadatas = Metadata.find_by_sql("SELECT * FROM metadatas")
     @keywords = Keyword.find_by_sql("SELECT * FROM keywords")
+    @annotations = Annotation.find_by_sql("SELECT * FROM annotations")
 
     respond_to do |format|
       format.html { render action: "index", layout: false }# index.html.erb
@@ -33,6 +39,8 @@ class DagrsController < ApplicationController
   def show
     @dagr = Dagr.find_by_sql("SELECT * FROM dagrs where dagr_guid='#{params[:id]}'")[0]
     @md = Metadata.find_by_sql("SELECT * FROM metadatas where dagr_guid='#{params[:id]}'")[0]
+    @keywords = Keyword.find_by_sql("SELECT * FROM keywords where dagr_guid='#{params[:id]}'")
+    @connections = Connection.find_by_sql("SELECT * FROM connections where parent_guid='#{params[:id]}'")
 
     respond_to do |format|
       format.html # show.html.erb
@@ -86,47 +94,100 @@ class DagrsController < ApplicationController
     @dagr = Dagr.find(params[:id])
   end
 
+  def createMediafile(uuid, type, hash)
+  mediauuid = UUID.new.generate.to_s  
+  @mediafile = Mediafile.new
+  @mediafile.media_guid = mediauuid
+  @mediafile.dagr_guid = uuid
+  @mediafile.filetype = type
+  case type
+  when "image"
+     @mediafile.name = hash["src"]
+  when "link"
+      @mediafile.name = hash["href"]
+  when "iframe"
+      @mediafile.name = hash["src"]
+  when "video"
+  when "audio"
+  end  
+    
+  @mediafile.save  
+
+  @connection = Connection.new
+  @connection.parent_guid = uuid
+  @connection.child_guid = mediauuid
+
+  @connection.save
+
+  hash.keys.each { |key|
+    annotation = Annotation.new
+    annotation.media_guid = mediauuid
+    annotation.annotation = "#{key}:#{hash[key]}"
+
+    annotation.save
+  }
+  end
+
   # POST /dagrs
   # POST /dagrs.json
   def create
-    filename = ask_open_file
-    if filename == nil
+    filenames = ask_open_file
+    if filenames == nil
       redirect_to "http://localhost:3000/dagrs"
     else
-    uuid = UUID.new.generate.to_s
-    name = filename[0]
+    filenames.each { |filename| 
+      uuid = UUID.new.generate.to_s
+      name = filename
 
-    #Dagr.connection.execute("INSERT INTO DAGRS (guid, name) values(#{uuid}, #{name})")
-    @dagr = Dagr.new
-    @dagr.dagr_guid = uuid
-    if params[:dagr]["name"].empty? 
+      filetype = File.extname(name)
+      components = parseHTML(name)
+
+      size = 0
+      components.each { |component|
+        size += component.size
+      }
+      #Dagr.connection.execute("INSERT INTO DAGRS (guid, name) values(#{uuid}, #{name})")
+      @dagr = Dagr.new
+      @dagr.dagr_guid = uuid
       @dagr.name = name
-    else
-      @dagr.name = params[:dagr]["name"]
-    end  
-    @dagr.save
-   
-    @metadata = Metadata.new
-    @metadata.dagr_guid = uuid
-    @metadata.filetype = File.extname(name)
-    @metadata.filesizebytes = File.size(name)
-    @metadata.lastmodifiedtime = File.mtime(name)
-    @metadata.creationtime = File.ctime(name)
-    @metadata.deletiontime = nil
-    @metadata.has_components = false
-    @metadata.creationauthor = File.stat(name).uid
+      @dagr.dagrcreationtime = Time.now
+      @dagr.dagrdeletiontime = nil
+      @dagr.has_components = false
+      if size > 0
+        @dagr.has_components = true
+      end
+      @dagr.deleted = false
 
-    @metadata.save
+      @dagr.save
+     
+      if filetype.eql?(".html")
+        components[0].each { |imghash|
+            createMediafile(uuid, "image",imghash)
+        } unless components[0].nil?
+        components[1].each { |ahash|
+            createMediafile(uuid, "link",ahash)
+        } unless components[1].nil?
+        components[2].each { |iframehash|
+            createMediafile(uuid, "iframe",iframehash)
+        } unless components[2].nil?
+        components[3].each { |videohash|
+            createMediafile(uuid, "video",videohash)
+        } unless components[3].nil?
+        components[4].each { |audiohash|
+            createMediafile(uuid, "audio",audiohash)
+        } unless components[4].nil?
+      end
 
-    mediauuid = UUID.new.generate.to_s  
-    @mediafile = Mediafile.new
-    @mediafile.media_guid = mediauuid
-    @mediafile.dagr_guid = uuid
-    @mediafile.filetype = ".mp4"
-    @mediafile.name = name
-    
-    @mediafile.save
+      @metadata = Metadata.new
+      @metadata.dagr_guid = uuid
+      @metadata.filetype = filetype
+      @metadata.filesizebytes = File.size(name)
+      @metadata.filecreationtime = File.ctime(name)
+      @metadata.lastmodifiedtime = File.mtime(name)
+      @metadata.creationauthor = getAuthor(name)
 
+      @metadata.save
+    }
     respond_to do |format|
         format.html { redirect_to @dagr, notice: 'Dagr was successfully created.' }
         format.json { render json: @dagr, status: :created, location: @dagr }
@@ -138,6 +199,13 @@ class DagrsController < ApplicationController
   # PUT /dagrs/1.json
   def update
     @dagr = Dagr.find(params[:id])
+    keywords = params[:keywords].split(",")
+    keywords.each { |k|
+      keyword = Keyword.new
+      keyword.dagr_guid = params[:id]
+      keyword.keyword = k
+      keyword.save
+    }
 
     respond_to do |format|
       if @dagr.update_attributes(params[:dagr])
@@ -154,8 +222,10 @@ class DagrsController < ApplicationController
   # DELETE /dagrs/1.json
   def destroy
     @dagr = Dagr.find(params[:id])
-    @dagr.destroy
+    @dagr.deleted = true
+    @dagr.dagrdeletiontime = Time.now
 
+    @dagr.save
     respond_to do |format|
       format.html { redirect_to dagrs_url }
       format.json { head :no_content }
