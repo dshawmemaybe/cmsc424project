@@ -1,10 +1,10 @@
 {
   "manifest_version": 2,
 
-  "name": "One-click Kittens",
+  "name": "One-click Kittens 2.0",
   "description": "This extension demonstrates a browser action with kittens.",
   "version": "1.0",
-
+  "icons": {"48": "icon.png"},
   "permissions": [
     "tabs", "http://localhost/*"
   ],
