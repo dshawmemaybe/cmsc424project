@@ -2,13 +2,36 @@
 
 <p>
   <b>Guid:</b>
-  <%= @dagr.guid %>
+  <%= @dagr.dagr_guid %>
 </p>
 
 <p>
   <b>Name:</b>
   <%= @dagr.name %>
 </p>
+
+<table>
+	<tr>
+    <th>Dagr Guid</th>
+    <th>Filetype</th>
+    <th>Filesizebytes</th>
+    <th>Creationtime</th>
+    <th>Lastmodifiedtime</th>
+    <th>Deletiontime</th>
+    <th>Has_components</th>
+    <th>Creationauthor</th>
+  </tr>
+  <tr>
+    <td><%= @md.dagr_guid %> </td>
+    <td><%= @md.filetype %> </td>
+    <td><%= @md.filesizebytes %> </td>
+    <td><%= @md.creationtime %> </td>
+    <td><%= @md.lastmodifiedtime %> </td>
+    <td><%= @md.deletiontime %> </td>
+    <td><%= @md.has_components %> </td>
+    <td><%= @md.creationauthor %> </td>
+  </tr>
+</table>
 
 <%= link_to 'Edit', edit_dagr_path(@dagr) %> |
 <%= link_to 'Back', dagrs_path %>

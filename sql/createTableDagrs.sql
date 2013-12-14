@@ -1,5 +1,5 @@
 ﻿CREATE TABLE dagrs
 (
-GUID varchar(255) NOT NULL PRIMARY KEY,
-Name varchar(255)
+dagr_guid varchar(255) NOT NULL PRIMARY KEY,
+name varchar(255)
 );

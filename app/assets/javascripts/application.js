@@ -41,6 +41,22 @@ $("#htmlinsert").click(function() {
 });
 });
 
+$("#nonhtmlinsert").click(function() {
+    $.ajax({
+    url : "http://localhost:3000/newnonhtml",
+    type: "GET",
+    dataType: "HTML",
+    success: function(data, textStatus, jqXHR)
+    {
+        $("#content").html(data);
+    },
+    error: function (jqXHR, textStatus, errorThrown)
+    {
+        alert(errorThrown);
+    }
+});
+});
+
 $("#dagrhome").click(function() {
 	$.ajax({
     url : "http://localhost:3000/mainindex",

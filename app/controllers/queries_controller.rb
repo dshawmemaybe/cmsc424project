@@ -6,7 +6,7 @@ class QueriesController < ApplicationController
   # GET /posts.json
   def metadataquery
     puts "test"
-    @dagrs = Dagrs.find_by_sql("SELECT * FROM DAGRS")
+    @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
 
     respond_to do |format|
       format.html { render action: "metadataquery", layout: false}
@@ -16,7 +16,7 @@ class QueriesController < ApplicationController
 
   def duplicatequery
     puts "test"
-    @dagrs = Dagrs.find_by_sql("SELECT * FROM DAGRS")
+    @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
 
     respond_to do |format|
       format.html { render action: "duplicatequery", layout: false}
@@ -26,7 +26,7 @@ class QueriesController < ApplicationController
 
   def timequery
     puts "test"
-     @dagrs = Dagrs.find_by_sql("SELECT * FROM DAGRS")
+     @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
 
     respond_to do |format|
       format.html { render action: "timequery", layout: false}
@@ -36,7 +36,7 @@ class QueriesController < ApplicationController
 
   def reachquery
     puts "test"
-    @dagrs = Dagrs.find_by_sql("SELECT * FROM DAGRS")
+    @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
 
     respond_to do |format|
       format.html { render action: "reachquery", layout: false}
@@ -46,7 +46,7 @@ class QueriesController < ApplicationController
 
   def orphanquery
     puts "test"
-    @dagrs = Dagrs.find_by_sql("SELECT * FROM DAGRS")
+    @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
 
     respond_to do |format|
       format.html { render action: "orphanquery", layout: false}

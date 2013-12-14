@@ -1,4 +1,4 @@
-<h1>Listing dagrs</h1>
+<h1>Listing Dagrs</h1>
 
 <table>
   <tr>
@@ -11,7 +11,7 @@
 
 <% @dagrs.each do |dagr| %>
   <tr>
-    <td><%= dagr.guid %> </td>
+    <td><%= dagr.dagr_guid %> </td>
     <td><%= dagr.name %> </td>
     <td><%= link_to 'Show', dagr %></td>
     <td><%= link_to 'Edit', edit_dagr_path(dagr) %></td>
@@ -20,6 +20,80 @@
 <% end %>
 </table>
 
-<br />
+<h1>Listing Mediafiles</h1>
+<table>
+<tr>
+    <th>Dagr Guid</th>
+    <th>Media Guid</th>
+    <th>Name</th>
+    <th>Filetype</th>
+  </tr>
 
-<%= link_to 'New Dagr', new_dagr_path %>
+<% @mediafiles.each do |m| %>
+  <tr>
+    <td><%= m.dagr_guid %> </td>
+    <td><%= m.media_guid %> </td>
+    <td><%= m.name %> </td>
+    <td><%= m.filetype %> </td>
+  </tr>
+<% end %>
+</table>
+
+<h1>Listing Connections</h1>
+<table>
+<tr>
+    <th>Parent Guid</th>
+    <th>Child Guid</th>
+  </tr>
+
+<% @connections.each do |c| %>
+  <tr>
+    <td><%= c.parent_guid %> </td>
+    <td><%= c.child_guid %> </td>
+  </tr>
+<% end %>
+</table>
+
+<h1>Listing Metadatas</h1>
+<table>
+<tr>
+    <th>Dagr Guid</th>
+    <th>Filetype</th>
+    <th>Filesizebytes</th>
+    <th>Creationtime</th>
+    <th>Lastmodifiedtime</th>
+    <th>Deletiontime</th>
+    <th>Has_components</th>
+    <th>Creationauthor</th>
+  </tr>
+
+<% @metadatas.each do |md| %>
+  <tr>
+    <td><%= md.dagr_guid %> </td>
+    <td><%= md.filetype %> </td>
+    <td><%= md.filesizebytes %> </td>
+    <td><%= md.creationtime %> </td>
+    <td><%= md.lastmodifiedtime %> </td>
+    <td><%= md.deletiontime %> </td>
+    <td><%= md.has_components %> </td>
+    <td><%= md.creationauthor %> </td>
+  </tr>
+<% end %>
+</table>
+
+<h1>Listing Keywords</h1>
+<table>
+<tr>
+    <th>Dagr Guid</th>
+    <th>Keyword</th>
+  </tr>
+
+<% @keywords.each do |k| %>
+  <tr>
+    <td><%= k.dagr_guid %> </td>
+    <td><%= k.keyword %> </td>
+  </tr>
+<% end %>
+</table>
+
+<br />
