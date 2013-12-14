@@ -8,9 +8,19 @@ def parseHTML(html)
 	imgs.each { |img| 
 		# attributes is hash of all the attributes in the img
 		attributes = img.attributes
+		# work your magic here 
+	}
+	hrefs = doc.css('a')
+	hrefs.each { |href| 
+		# attributes is hash of all the attributes in the img
+		attributes = href.attributes
 		# work your magic here
 	}
-
-	# do similar stuff for doc.css('a') and iframe, etc
-
+	iframes = doc.css('iframe')
+	iframes.each { |iframe| 
+		# attributes is hash of all the attributes in the img
+		attributes = iframes.attributes
+		# work your magic here
+	}
+	components.push(imgs,href,iframes)
 end
