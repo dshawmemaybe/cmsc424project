@@ -14,9 +14,15 @@
 //= require jquery_ujs
 //= require bootstrap
 //= require bootstrap-datepicker
+//= require bootstrap-select
 //= require_tree .
 
 $(function() {
+
+$('.selectpicker').selectpicker({
+      style: 'btn-info',
+      size: 4
+  });
 
 // Sidebar active state activation
 $(".panel-heading").click(function(){
@@ -78,7 +84,7 @@ $("#dagrhome").click(function() {
 
 $("#metadataquery").click(function() {
 	$.ajax({
-    url : "http://localhost:3000/metadataquery",
+    url : "http://localhost:3000/metadataquerystart",
     type: "GET",
     dataType: "HTML",
     success: function(data, textStatus, jqXHR)
@@ -94,7 +100,7 @@ $("#metadataquery").click(function() {
 
 $("#duplicatequery").click(function() {
 	$.ajax({
-    url : "http://localhost:3000/duplicatequery",
+    url : "http://localhost:3000/duplicatequerystart",
     type: "GET",
     dataType: "HTML",
     success: function(data, textStatus, jqXHR)
@@ -110,7 +116,7 @@ $("#duplicatequery").click(function() {
 
 $("#orphanquery").click(function() {
 	$.ajax({
-    url : "http://localhost:3000/orphanquery",
+    url : "http://localhost:3000/orphanquerystart",
     type: "GET",
     dataType: "HTML",
     success: function(data, textStatus, jqXHR)
@@ -126,7 +132,7 @@ $("#orphanquery").click(function() {
 
 $("#reachquery").click(function() {
 	$.ajax({
-    url : "http://localhost:3000/reachquery",
+    url : "http://localhost:3000/reachquerystart",
     type: "GET",
     dataType: "HTML",
     success: function(data, textStatus, jqXHR)

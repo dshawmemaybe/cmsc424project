@@ -9,7 +9,7 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require jquery.fileupload-ui\
+ *= require bootstrap-select
  *= require_tree .
  */
 
@@ -20,8 +20,11 @@ body.tmp {
 table.victor,td, th {
 	border:2px solid black;
 }
+.table-striped td, .table-striped th {
+	border:none;
+}
 td {
-	max-width: 450px;
+	max-width: 400px;
 	word-wrap:break-word;
 }
 td:hover,td.alt:hover

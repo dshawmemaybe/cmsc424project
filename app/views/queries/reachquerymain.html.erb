@@ -1,10 +1,10 @@
 <div class="panel panel-primary">
 	<div class = "panel-heading other">
-		<h1 class = "panel-title">Time-Range DAGR Report</h1>
+		<h1 class = "panel-title">Reach Query</h1>
 	</div>
 	<div class = "panel-body">
 	<div class="input-daterange" id="datepicker">
-	<form accept-charset="UTF-8" action = "timequery"method = "get">
+	<form accept-charset="UTF-8" action = "reachquery"method = "get">
     <input type="text" class="input-small" name="start" data-provide="datepicker"/>
     <span class="add-on">to</span>
     <input type="text" class="input-small" name="end" data-provide="datepicker"/>
@@ -12,8 +12,8 @@
       </form>
 
 </div>
-	<h3>Query Results: <%= @start %> - <%= @end %></h3>
-	<table class = "table table-striped">
+	<h3>Query Results</h3>
+	<table class = "timetable">
 	  <tr>
 		<th>Guid</th>
 		<th>Name</th>

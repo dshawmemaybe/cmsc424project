@@ -1,4 +1,35 @@
-<h1>Orphan and Sterile Reports</h1>
+<div class="panel panel-primary">
+	<div class = "panel-heading other">
+		<h1 class = "panel-title">Orphan and Sterile Reports</h1>
+	</div>
+	<div class = "panel-body">
+	<div class="input-daterange" id="datepicker">
+	<form accept-charset="UTF-8" action = "orphanquery"method = "get">
+      <input name = "commit" type = "submit" value = "Find all those single DAGRS!" class = "btn btn-warning" id = "querybutton">
+      </form>
 
+</div>
+	<h3>Query Results</h3>
+	<table class = "table table-striped">
+	  <tr>
+		<th>Guid</th>
+		<th>Name</th>
+		<th>Creation Time</th>
+		<th>Deletion Time</th>
+		<th>Has Components</th>
+		<th>Deleted</th>
+	  </tr>
 
-
+	<% @dagrs.each do |dagr| %>
+	  <tr>
+		<td><%= dagr.dagr_guid %> </td>
+		<td><%= dagr.name %> </td>
+		<td><%= dagr.dagrcreationtime %> </td>
+		<td><%= dagr.dagrdeletiontime %> </td>
+		<td><%= dagr.has_components %> </td>
+		<td><%= dagr.deleted %> </td>
+	  </tr>
+	<% end %>
+	</table>
+	</div>
+</div>

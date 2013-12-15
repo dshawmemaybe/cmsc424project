@@ -8,12 +8,16 @@ Cmsc424project::Application.routes.draw do
   post "/dagrsnewurl" => "dagrs#newurl"
   get "newnonhtml" => "dagrs#newnonhtml"
 
-  get "/metadataquery" => "queries#metadataquery"
-  get "/duplicatequery" => "queries#duplicatequery"
-  get "/orphanquery" => "queries#orphanquery"
+  get "/metadataquerystart" => "queries#metadataquery"
+  get "/metadataquery" => "queries#metadataquerymain"
+  get "/duplicatequerystart" => "queries#duplicatequery"
+  get "/duplicatequery" => "queries#duplicatequerymain"
+  get "/orphanquerystart" => "queries#orphanquery"
+  get "/orphanquery" => "queries#orphanquerymain"
   get "/timequerystart" => "queries#timequery"
   get "/timequery" => "queries#timequerymain"
-  get "/reachquery" => "queries#reachquery"
+  get "/reachquerystart" => "queries#reachquery"
+  get "/reachquery" => "queries#reachquerymain"
 
   resources :posts 
 

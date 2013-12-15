@@ -1,4 +1,47 @@
-<h1>Reach Query</h1>
+<div class="panel panel-primary">
+	<div class = "panel-heading other">
+		<h1 class = "panel-title">Reach Query</h1>
+	</div>
+	<div class = "panel-body">
+	<div class="input-daterange" id="datepicker">
+	<form accept-charset="UTF-8" action = "reachquery"method = "get">
+    <select class="bootstrap-select">
+    <optgroup label="Picnic">
+      <option>Mustard</option>
+      <option>Ketchup</option>
+      <option>Relish</option>
+    </optgroup>
+    <optgroup label="Camping">
+      <option>Tent</option>
+      <option>Flashlight</option>
+      <option>Toilet Paper</option>
+    </optgroup>
+  </select>
+      <input name = "commit" type = "submit" value = "Query!" class = "btn btn-warning" id = "querybutton">
+      </form>
 
+</div>
+	<h3>Query Results</h3>
+	<table class = "table table-striped">
+	  <tr>
+		<th>Guid</th>
+		<th>Name</th>
+		<th>Creation Time</th>
+		<th>Deletion Time</th>
+		<th>Has Components</th>
+		<th>Deleted</th>
+	  </tr>
 
-
+	<% @dagrs.each do |dagr| %>
+	  <tr>
+		<td><%= dagr.dagr_guid %> </td>
+		<td><%= dagr.name %> </td>
+		<td><%= dagr.dagrcreationtime %> </td>
+		<td><%= dagr.dagrdeletiontime %> </td>
+		<td><%= dagr.has_components %> </td>
+		<td><%= dagr.deleted %> </td>
+	  </tr>
+	<% end %>
+	</table>
+	</div>
+</div>

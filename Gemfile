@@ -16,6 +16,7 @@ gem 'green_shoes', '~> 1.1.374'
 gem "twitter-bootstrap-rails", :git => 'git://github.com/seyhunak/twitter-bootstrap-rails.git'
 gem 'bootstrap-sass', '~> 3.0.3.0'
 gem 'bootstrap-datepicker-rails'
+gem 'bootstrap-select-rails'
 # Gems used only for assets and not required
 # in production environments by default.
 group :assets do
