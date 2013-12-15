@@ -1,4 +1,3 @@
-require 'dparser'
 require 'etc'
 
 class DagrsController < ApplicationController
@@ -105,11 +104,17 @@ class DagrsController < ApplicationController
 
   case type
   when "image"
-     @mediafile.name = hash["src"].value
-  when "link"
-      @mediafile.name = hash["href"].value
-  when "iframe"
+     if !hash["src"].nil?
       @mediafile.name = hash["src"].value
+     end
+  when "link"
+      if !hash["href"].nil?
+        @mediafile.name = hash["href"].value
+      end
+  when "iframe"
+      if !hash["src"].nil?
+        @mediafile.name = hash["src"].value
+      end
   when "video"
   when "audio"
   end  
@@ -229,6 +234,22 @@ class DagrsController < ApplicationController
     @dagr.dagrdeletiontime = Time.now
 
     @dagr.save
+
+    sql = "DELETE FROM metadatas WHERE dagr_guid='#{params[:id]}'"
+    Metadata.connection.execute(sql)
+    
+    sql = "DELETE FROM keywords where dagr_guid='#{params[:id]}'"
+    Keyword.connection.execute(sql)
+
+    sql = "DELETE FROM connections where parent_guid='#{params[:id]}'"
+    Connection.connection.execute(sql)
+
+    sql = "UPDATE mediafiles SET deleted=true, deletiontime='#{Time.now}' where dagr_guid='#{params[:id]}'"
+    Connection.connection.execute(sql)
+
+    sql = "DELETE FROM annotations where media_guid IN (SELECT media_guid FROM mediafiles where dagr_guid='#{params[:id]}')"
+    Annotation.connection.execute(sql)
+
     respond_to do |format|
       format.html { redirect_to dagrs_url }
       format.json { head :no_content }
