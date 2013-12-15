@@ -24,10 +24,9 @@ td:hover,td.alt:hover
 {
     background: #8962C4;
 }
-.header:hover{
-	background: #8962C4;
-}
 .header{
 	cursor: pointer; cursor: hand;
-	border:1px solid #8962C4;
+}
+.header h3:hover{
+	background: #8962C4;
 }
