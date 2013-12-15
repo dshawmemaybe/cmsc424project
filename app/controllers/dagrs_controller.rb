@@ -100,13 +100,16 @@ class DagrsController < ApplicationController
   @mediafile.media_guid = mediauuid
   @mediafile.dagr_guid = uuid
   @mediafile.filetype = type
+  @mediafile.deleted = false
+  @mediafile.deletiontime = nil
+
   case type
   when "image"
-     @mediafile.name = hash["src"]
+     @mediafile.name = hash["src"].value
   when "link"
-      @mediafile.name = hash["href"]
+      @mediafile.name = hash["href"].value
   when "iframe"
-      @mediafile.name = hash["src"]
+      @mediafile.name = hash["src"].value
   when "video"
   when "audio"
   end  

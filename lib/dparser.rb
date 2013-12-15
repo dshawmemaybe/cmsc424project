@@ -1,5 +1,4 @@
 require 'nokogiri'
-class DParser
 	def parseHTML(html)
 		components = []
 		f = File.open(html)
@@ -45,4 +44,3 @@ class DParser
 
 		return components
 	end
-end

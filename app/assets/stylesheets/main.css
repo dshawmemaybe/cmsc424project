@@ -40,6 +40,18 @@ ul.queries {
 	padding:0;
 }
 
+#destroymodal {
+	background-color: #563d7c;
+}
+
+#destroybutton {
+	background-color: #563d7c;
+}
+
+a.destroya {
+	color:white !important;
+}
+
 ul.queries li{
 	margin:0;
 	padding:0;

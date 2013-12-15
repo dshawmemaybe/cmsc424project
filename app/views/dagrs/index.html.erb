@@ -35,6 +35,8 @@
     <th>Media Guid</th>
     <th>Name</th>
     <th>Filetype</th>
+    <th>Deleted</th>
+    <th>Deletiontime</th>
   </tr>
 
 <% @mediafiles.each do |m| %>
@@ -43,6 +45,8 @@
     <td><%= m.media_guid %> </td>
     <td><%= m.name %> </td>
     <td><%= m.filetype %> </td>
+    <td><%= m.deleted %> </td>
+    <td><%= m.deletiontime %> </td>
   </tr>
 <% end %>
 </table>
