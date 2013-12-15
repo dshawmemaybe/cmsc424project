@@ -1,5 +1,2 @@
-CREATE TABLE connections
-(
-parent_guid varchar(255) REFERENCES dagrs (dagr_guid),
-child_guid varchar(255)
-);
+﻿INSERT INTO connections (parent_guid, parent_name, child_guid, child_name) 
+SELECT 'test' as parent_guid, 'test' as parent_name, child_guid, child_name FROM connections where parent_guid='097ee8f0-478f-0131-39a3-5b57a021aceb';

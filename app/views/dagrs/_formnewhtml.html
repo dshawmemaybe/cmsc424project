@@ -1,3 +1,14 @@
+
+<form accept-charset="UTF-8" action = "/dagrsnewurl" class = "newurl_dagr" id = "newurl_dagr" method = "post">
+<div class="parse-form">
+    <div class="input-group parse-form">
+    <input type="text" class="form-control" name = "url">
+      <span class="input-group-btn">
+        <input name = "commit" type = "submit" value = "HTML Dagr" class = "btn btn-default">
+      </span>
+    </div><!-- /input-group -->
+  </div><!-- /parse-form -->
+</form>
 <%= form_for(@dagr) do |f| %>
   <% if @dagr.errors.any? %>
     <div id="error_explanation">
@@ -10,8 +21,7 @@
       </ul>
     </div>
   <% end %>
-
   <div class="actions">
-    <%= f.submit %>
+    <%= f.submit "Upload Dagr" %>
   </div>
 <% end %>

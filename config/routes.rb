@@ -5,6 +5,7 @@ Cmsc424project::Application.routes.draw do
   post "welcome" => 'dagrs#index'
   get "/mainindex" => "dagrs#mainindex"
 
+  post "/dagrsnewurl" => "dagrs#newurl"
   get "newnonhtml" => "dagrs#newnonhtml"
 
   get "/metadataquery" => "queries#metadataquery"

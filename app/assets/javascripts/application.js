@@ -12,9 +12,11 @@
 //
 //= require jquery
 //= require jquery_ujs
-//= require jquery-fileupload/basic
+//= require bootstrap
 //= require_tree .
+
 $(function() {
+
 // Sidebar active state activation
 $(".panel-heading").click(function(){
     if ($(this).hasClass("active") && !$(this).hasClass("home")){$(this).removeClass("active")}

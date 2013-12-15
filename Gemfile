@@ -7,11 +7,13 @@ gem 'rails', '3.2.13'
 
 gem 'nokogiri'
 gem 'pg'
+gem 'mechanize'
 gem 'carrierwave'
 gem 'uuid'
 gem 'paperclip', '~> 3.0'
 gem 'jquery-fileupload-rails'
 gem 'green_shoes', '~> 1.1.374'
+gem 'twitter-bootstrap-rails'
 
 # Gems used only for assets and not required
 # in production environments by default.

@@ -20,6 +20,10 @@ body.tmp {
 table.victor,td, th {
 	border:5px solid black;
 }
+td {
+	max-width: 450px;
+	word-wrap:break-word;
+}
 td:hover,td.alt:hover
 {
     background: #8962C4;

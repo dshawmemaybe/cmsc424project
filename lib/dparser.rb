@@ -1,8 +1,16 @@
 require 'nokogiri'
-	def parseHTML(html)
+require 'open-uri'
+require 'openssl'
+require 'net/https'
+
+	def parseHTML(web,html)
 		components = []
-		f = File.open(html)
-		doc = Nokogiri::HTML(f)
+		if web 
+			doc = Nokogiri::HTML(open(html, :ssl_verify_mode => OpenSSL::SSL::VERIFY_NONE))
+		else	
+			f = File.open(html)
+			doc = Nokogiri::HTML(f)
+		end
 		# href is an array of all the imgs with their attributes
 		imgs = doc.css('img')
 		imgshash = []

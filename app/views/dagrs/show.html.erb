@@ -90,11 +90,13 @@
 			<table>
 			<tr>
 			    <th>Child Guid</th>
+			    <th>Child Name</th>
 			  </tr>
 
 			<% @connections.each do |c| %>
 			  <tr>
 			    <td><%= c.child_guid %> </td>
+			    <td><%= c.child_name %> </td>
 			  </tr>
 			<% end %>
 			</table>
