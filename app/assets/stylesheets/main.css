@@ -109,3 +109,7 @@ ul.queries a:hover{
 	width:150px;
 	float:left;
 }
+
+.panel {
+	border:none;
+}

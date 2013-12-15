@@ -70,8 +70,10 @@ class QueriesController < ApplicationController
   end
 
   def reachquery
-    @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
-
+    @dagrslist = Dagr.find_by_sql("SELECT * FROM dagrs")
+    @mediafileslist = Mediafile.find_by_sql("SELECT * FROM mediafiles")
+    @dagrs = []
+    @mediafiles = []
     respond_to do |format|
       format.html { render action: "reachquery", layout: false}
       format.json { render json: @dagrs }
@@ -79,7 +81,11 @@ class QueriesController < ApplicationController
   end
 
   def reachquerymain
-    @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
+    @dagrslist = Dagr.find_by_sql("SELECT * FROM dagrs")
+    @mediafileslist = Mediafile.find_by_sql("SELECT * FROM mediafiles")
+    dagr = params[:selecteddagr]
+    @dagrs = Dagr.find_by_sql("SELECT * FROM dagrs where dagr_guid in ((SELECT parent_guid FROM connections where child_guid='#{dagr}') UNION (SELECT child_guid FROM connections where parent_guid='#{dagr}'))")
+    @mediafiles = Mediafile.find_by_sql("SELECT * FROM mediafiles where media_guid in ((SELECT parent_guid FROM connections where child_guid='#{dagr}') UNION (SELECT child_guid FROM connections where parent_guid='#{dagr}'))")
 
     respond_to do |format|
       format.html {}

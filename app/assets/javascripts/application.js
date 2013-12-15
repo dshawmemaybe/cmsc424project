@@ -16,13 +16,12 @@
 //= require bootstrap-datepicker
 //= require bootstrap-select
 //= require_tree .
+$(document).ready(function() {
+});
 
 $(function() {
 
-$('.selectpicker').selectpicker({
-      style: 'btn-info',
-      size: 4
-  });
+
 
 // Sidebar active state activation
 $(".panel-heading").click(function(){
