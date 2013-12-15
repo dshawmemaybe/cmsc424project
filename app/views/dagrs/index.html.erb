@@ -1,122 +1,151 @@
-<h1>Listing Dagrs</h1>
 
-<table>
-  <tr>
-    <th>Guid</th>
-    <th>Name</th>
-    <th>DagrCreationtime</th>
-    <th>DagrDeletiontime</th>
-    <th>Has_components</th>
-    <th>Deleted</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div class = "header"><h3>Listing DAGRs</h3>
+<div class = "section">
+	<table class = "victor">
+	  <tr>
+		<th>Guid</th>
+		<th>Name</th>
+		<th>Creation Time</th>
+		<th>Deletion Time</th>
+		<th>Has Components</th>
+		<th>Deleted</th>
+		<th></th>
+		<th></th>
+		<th></th>
+	  </tr>
 
-<% @dagrs.each do |dagr| %>
-  <tr>
-    <td><%= dagr.dagr_guid %> </td>
-    <td><%= dagr.name %> </td>
-    <td><%= dagr.dagrcreationtime %> </td>
-    <td><%= dagr.dagrdeletiontime %> </td>
-    <td><%= dagr.has_components %> </td>
-    <td><%= dagr.deleted %> </td>
-    <td><%= link_to 'Show', dagr %></td>
-    <td><%= link_to 'Edit', edit_dagr_path(dagr) %></td>
-    <td><%= link_to 'Destroy', dagr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-  </tr>
-<% end %>
-</table>
+	<% @dagrs.each do |dagr| %>
+	  <tr>
+		<td><%= dagr.dagr_guid %> </td>
+		<td><%= dagr.name %> </td>
+		<td><%= dagr.dagrcreationtime %> </td>
+		<td><%= dagr.dagrdeletiontime %> </td>
+		<td><%= dagr.has_components %> </td>
+		<td><%= dagr.deleted %> </td>
+		<td><%= link_to 'Show', dagr %></td>
+		<td><%= link_to 'Edit', edit_dagr_path(dagr) %></td>
+		<td><%= link_to 'Destroy', dagr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
 
-<h1>Listing Mediafiles</h1>
-<table>
-<tr>
-    <th>Dagr Guid</th>
-    <th>Media Guid</th>
-    <th>Name</th>
-    <th>Filetype</th>
-    <th>Deleted</th>
-    <th>Deletiontime</th>
-  </tr>
+</div>
 
-<% @mediafiles.each do |m| %>
-  <tr>
-    <td><%= m.dagr_guid %> </td>
-    <td><%= m.media_guid %> </td>
-    <td><%= m.name %> </td>
-    <td><%= m.filetype %> </td>
-    <td><%= m.deleted %> </td>
-    <td><%= m.deletiontime %> </td>
-  </tr>
-<% end %>
-</table>
+<div class = "header"><h3>Listing Media Files</h3>
+<div class = "section">
+	<table class = "victor">
+	<tr>
+		<th>Dagr Guid</th>
+		<th>Media Guid</th>
+		<th>Name</th>
+		<th>Filetype</th>
+		<th>Deleted</th>
+		<th>Deletiontime</th>
+	  </tr>
 
-<h1>Listing Connections</h1>
-<table>
-<tr>
-    <th>Parent Guid</th>
-    <th>Child Guid</th>
-  </tr>
+	<% @mediafiles.each do |m| %>
+	  <tr>
+		<td><%= m.dagr_guid %> </td>
+		<td><%= m.media_guid %> </td>
+		<td><%= m.name %> </td>
+		<td><%= m.filetype %> </td>
+		<td><%= m.deleted %> </td>
+		<td><%= m.deletiontime %> </td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
+</div>
 
-<% @connections.each do |c| %>
-  <tr>
-    <td><%= c.parent_guid %> </td>
-    <td><%= c.child_guid %> </td>
-  </tr>
-<% end %>
-</table>
+<div class = "header"><h3>Listing Connections</h3>
+<div class = "section">
+	<table class = "victor">
+	<tr>
+	    <th>Parent Guid</th>
+	    <th>Child Guid</th>
+	  </tr>
 
-<h1>Listing Metadatas</h1>
-<table>
-<tr>
-    <th>Dagr Guid</th>
-    <th>Filetype</th>
-    <th>Filesizebytes</th>
-    <th>Filecreationtime</th>
-    <th>Lastmodifiedtime</th>
-    <th>Creationauthor</th>
-  </tr>
+	<% @connections.each do |c| %>
+	  <tr>
+	    <td><%= c.parent_guid %> </td>
+	    <td><%= c.child_guid %> </td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
+</div>
 
-<% @metadatas.each do |md| %>
-  <tr>
-    <td><%= md.dagr_guid %> </td>
-    <td><%= md.filetype %> </td>
-    <td><%= md.filesizebytes %> </td>
-    <td><%= md.filecreationtime %> </td>
-    <td><%= md.lastmodifiedtime %> </td>
-    <td><%= md.creationauthor %> </td>
-  </tr>
-<% end %>
-</table>
+<div class = "header"><h3>Listing File Metadatas</h3>
+	<div class = "section">
+	<table class = "victor">
+	<tr>
+	    <th>Dagr Guid</th>
+	    <th>Type</th>
+	    <th>Size in Bytes</th>
+	    <th> Creation Time</th>
+	    <th>Last Modified Time</th>
+	    <th>Creation Author</th>
+	  </tr>
 
-<h1>Listing Keywords</h1>
-<table>
-<tr>
-    <th>Dagr Guid</th>
-    <th>Keyword</th>
-  </tr>
+	<% @metadatas.each do |md| %>
+	  <tr>
+	    <td><%= md.dagr_guid %> </td>
+	    <td><%= md.filetype %> </td>
+	    <td><%= md.filesizebytes %> </td>
+	    <td><%= md.filecreationtime %> </td>
+	    <td><%= md.lastmodifiedtime %> </td>
+	    <td><%= md.creationauthor %> </td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
+</div>
 
-<% @keywords.each do |k| %>
-  <tr>
-    <td><%= k.dagr_guid %> </td>
-    <td><%= k.keyword %> </td>
-  </tr>
-<% end %>
-</table>
+<div class = "header"><h3>Listing Keywords</h3>
+	<div class = "section">
+	<table class = "victor">
+	<tr>
+	    <th>Dagr Guid</th>
+	    <th>Keyword</th>
+	  </tr>
 
-<h1>Listing Annotations</h1>
-<table>
-<tr>
-    <th>Media Guid</th>
-    <th>Annotation</th>
-  </tr>
+	<% @keywords.each do |k| %>
+	  <tr>
+	    <td><%= k.dagr_guid %> </td>
+	    <td><%= k.keyword %> </td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
+</div>
 
-<% @annotations.each do |a| %>
-  <tr>
-    <td><%= a.media_guid %> </td>
-    <td><%= a.annotation %> </td>
-  </tr>
-<% end %>
-</table>
+<div class = "header"><h3>Listing Annotations</h3>
+	<div class = "section">
+	<table class = "victor">
+	<tr>
+	    <th>Media Guid</th>
+	    <th>Annotation</th>
+	  </tr>
+
+	<% @annotations.each do |a| %>
+	  <tr>
+	    <td><%= a.media_guid %> </td>
+	    <td><%= a.annotation %> </td>
+	  </tr>
+	<% end %>
+	</table>
+</div>
+</div>
+
 
 <br />
+<script>
+
+
+
+$(".header").click(function(){
+   $(".section").hide(300);
+   $(this).children().show(300);
+});
+</script>

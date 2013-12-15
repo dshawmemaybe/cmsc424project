@@ -13,7 +13,17 @@
  *= require_tree .
  */
 
-body {
+body.tmp {
 	width:800px;
 	height:800px;
+}
+table.victor,td, th {
+	border:5px solid black;
+}
+td:hover,td.alt:hover
+{
+    background: #8962C4;
+}
+.header{
+	cursor: pointer; cursor: hand;
 }

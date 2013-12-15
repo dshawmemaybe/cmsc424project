@@ -54,3 +54,4 @@ def parseHTML(html)
 	components.push(iframes)
 	components.push(hrefs)
 return components
+
