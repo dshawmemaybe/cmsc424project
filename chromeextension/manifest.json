@@ -1,7 +1,7 @@
 {
   "manifest_version": 2,
 
-  "name": "One-click Kittens 2.0",
+  "name": "MMDA: A Multi-Media Data Aggregator",
   "description": "This extension demonstrates a browser action with kittens.",
   "version": "1.0",
   "icons": {"48": "icon.png"},

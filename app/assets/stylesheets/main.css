@@ -3,7 +3,7 @@ h1.posttitle {
 }
 
 body {
-	width: 800px;
+	width: 958px;
 	height: 400px;
 }
 
@@ -11,6 +11,18 @@ body {
 	padding:0;
 	width:150px;
 	height:30px;
+}
+
+.panel-title {
+	font-size: 36px;
+	width:auto;
+	font-weight: bold;
+}
+
+.panel-heading.other {
+	width:auto;
+	height:auto;
+	background-image: linear-gradient(to bottom, #8962C4, #563d7c);
 }
 
 .panel-heading a:hover {
@@ -86,9 +98,8 @@ ul.queries a:hover{
 
 #content {
 	height:400px;
-	width:650px; 
-	float:left;
-	border: 1px solid black;
+	width:auto; 
+	position:relative;
 	background:white;
 	overflow: auto;
 }

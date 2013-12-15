@@ -11,7 +11,8 @@ Cmsc424project::Application.routes.draw do
   get "/metadataquery" => "queries#metadataquery"
   get "/duplicatequery" => "queries#duplicatequery"
   get "/orphanquery" => "queries#orphanquery"
-  get "/timequery" => "queries#timequery"
+  get "/timequerystart" => "queries#timequery"
+  get "/timequery" => "queries#timequerymain"
   get "/reachquery" => "queries#reachquery"
 
   resources :posts 

@@ -9,16 +9,16 @@
  * compiled file, but it's generally better to create a new file per style scope.
  *
  *= require_self
- *= require jquery.fileupload-ui
+ *= require jquery.fileupload-ui\
  *= require_tree .
  */
 
 body.tmp {
-	width:800px;
+	width:958px;
 	height:800px;
 }
 table.victor,td, th {
-	border:5px solid black;
+	border:2px solid black;
 }
 td {
 	max-width: 450px;
@@ -33,4 +33,9 @@ td:hover,td.alt:hover
 }
 .header h3:hover{
 	background: #8962C4;
+}
+
+#datepicker {
+	margin-top:10px;
+	margin-bottom:10px;
 }

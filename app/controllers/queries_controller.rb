@@ -25,11 +25,30 @@ class QueriesController < ApplicationController
   end
 
   def timequery
-    puts "test"
-     @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
-
+    if params[:start].nil?
+      @dagrs = []
+     else 
+      puts params[:start]
+     @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS WHERE dagrcreationtime >= '#{params[:start]}' AND dagrcreationtime <= '#{params[:end]}'")
+    end
     respond_to do |format|
       format.html { render action: "timequery", layout: false}
+      format.json { render json: @dagrs }
+    end
+  end
+
+  def timequerymain
+    if params[:start] == ""
+      @dagrs = []
+     else 
+      puts params[:start]
+     @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS WHERE dagrcreationtime >= '#{params[:start]}' AND dagrcreationtime <= '#{params[:end]}'")
+    end
+
+    @start = params[:start]
+    @end = params[:end]
+    respond_to do |format|
+      format.html {}
       format.json { render json: @dagrs }
     end
   end

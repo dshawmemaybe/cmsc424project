@@ -1,11 +1,11 @@
 body {
-	width: 800px;
+	width: 958px;
 	height: 370px;
 	text-align: center;
 }
 
 .jumbotron {
-	width: 800px;
+	width: 958px;
 	height: 300px;
 	background-image: linear-gradient(to bottom, white, #e6e6e6) !important;
 	padding-bottom:0;
@@ -13,7 +13,7 @@ body {
 }
 
 .page-header {
-	width:800px;
+	width:958px;
 	height:70px;
 border: 0 !important;
 	margin: 0 !important;

@@ -11,8 +11,8 @@
 // GO AFTER THE REQUIRES BELOW.
 //
 //= require jquery
-//= require jquery_ujs
 //= require bootstrap
+//= require bootstrap-datepicker
 //= require_tree .
 
 $(function() {
@@ -141,7 +141,7 @@ $("#reachquery").click(function() {
 
 $("#timequery").click(function() {
 	$.ajax({
-    url : "http://localhost:3000/timequery",
+    url : "http://localhost:3000/timequerystart",
     type: "GET",
     dataType: "HTML",
     success: function(data, textStatus, jqXHR)
