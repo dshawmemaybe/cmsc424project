@@ -274,6 +274,17 @@ class DagrsController < ApplicationController
   # PUT /dagrs/1
   # PUT /dagrs/1.json
   def update
+    client = Twitter::REST::Client.new do |config|
+  config.consumer_key        = "qWvtUqFQCPkbVEXiCh5LiA"
+  config.consumer_secret     = "HEINxy2NSFcWH8hLaWQFIj7tWE8WKNKtHcpnHb7rSw"
+  config.access_token        = "533514348-5lusrg3q5CSvlQ9eTWnrB8k1e7kGACX6YcxRcPLv"
+  config.access_token_secret = "4fPvoiNRfcUT4MiO2RZAQBzBGRl1VAVA05IhzqMqgQ4Jk"
+  end
+
+client.search("to:omg", :count => 5, :result_type => "recent").collect do |tweet|
+ # @tweets[tweet.user.screen_name] = tweet.text
+end
+
     @olddagr = Dagr.find(params[:id])
     keywords = params[:keywords].split(",")
     keywords.each { |k|
@@ -281,8 +292,17 @@ class DagrsController < ApplicationController
       keyword.dagr_guid = params[:id]
       keyword.keyword = k
       keyword.save
-    }
 
+      if (keyword.keyword.include?('#'))
+        client.search("to:#{keyword.keyword}", :count => 5, :result_type => "recent").collect do |tweet|
+          keyword = Keyword.new
+          keyword.dagr_guid = params[:id]
+          keyword.keyword = "@#{tweet.user.screen_name} : #{tweet.text}"
+          keyword.save  
+        end
+      end  
+    }
+    
     filename = params[:url]
     if filename.eql?("")
     else

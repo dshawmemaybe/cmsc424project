@@ -1,6 +1,7 @@
 require 'uuid'
 require 'find'
-
+require 'twitter'
+OpenSSL::SSL::VERIFY_PEER = OpenSSL::SSL::VERIFY_NONE
 class QueriesController < ApplicationController
   # GET /posts
   # GET /posts.json
@@ -198,6 +199,7 @@ class QueriesController < ApplicationController
       puts params[:start]
      @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS WHERE dagrcreationtime >= '#{params[:start]}' AND dagrcreationtime <= '#{params[:end]}'")
     end
+
     respond_to do |format|
       format.html { render action: "timequery", layout: false}
       format.json { render json: @dagrs }
