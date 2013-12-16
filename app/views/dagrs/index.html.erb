@@ -17,7 +17,7 @@
 	<% @dagrs.each do |dagr| %>
 	  <tr>
 		<td><%= dagr.dagr_guid %> </td>
-		<td><%= dagr.name %> </td>
+		<td><%= link_to dagr.name,dagr.name %> </td>
 		<td><%= dagr.dagrcreationtime %> </td>
 		<td><%= dagr.dagrdeletiontime %> </td>
 		<td><%= dagr.has_components %> </td>
@@ -48,7 +48,7 @@
 	  <tr>
 		<td><%= m.dagr_guid %> </td>
 		<td><%= m.media_guid %> </td>
-		<td><%= m.name %> </td>
+		<td><%= link_to m.name,m.name %> </td>
 		<td><%= m.filetype %> </td>
 		<td><%= m.deleted %> </td>
 		<td><%= m.deletiontime %> </td>
