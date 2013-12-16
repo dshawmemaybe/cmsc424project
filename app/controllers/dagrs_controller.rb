@@ -113,7 +113,7 @@ class DagrsController < ApplicationController
       @metadata.filesizebytes = Mechanize.new{|a| a.ssl_version, a.verify_mode = 'SSLv3', OpenSSL::SSL::VERIFY_NONE}.head(filename)["content-length"].to_i
       @metadata.filecreationtime = nil
       @metadata.lastmodifiedtime = nil
-      @metadata.creationauthor = nil
+      @metadata.creationauthor = ""
 
       @metadata.save
     
@@ -334,7 +334,7 @@ class DagrsController < ApplicationController
       @metadata.filesizebytes = Mechanize.new.head(filename)["content-length"].to_i
       @metadata.filecreationtime = nil
       @metadata.lastmodifiedtime = nil
-      @metadata.creationauthor = nil
+      @metadata.creationauthor = ""
 
       @metadata.save
 

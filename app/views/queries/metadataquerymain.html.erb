@@ -3,17 +3,58 @@
 		<h1 class = "panel-title">DAGR Metadata Query</h1>
 	</div>
 	<div class = "panel-body">
-	<div class="input-daterange" id="datepicker">
 	<form accept-charset="UTF-8" action = "metadataquery"method = "get">
-    <input type="text" class="input-small" name="start" data-provide="datepicker"/>
-    <span class="add-on">to</span>
-    <input type="text" class="input-small" name="end" data-provide="datepicker"/>
-      <input name = "commit" type = "submit" value = "Query!" class = "btn btn-warning" id = "querybutton">
+
+	<div class="input-group">
+	<h3 class = "metahead">File Creation Time:</h3>
+    <input type="text" class="input-small" name="createstart" data-provide="datepicker"/>
+    <span class="add-on"> to </span>
+    <input type="text" class="input-small" name="createend" data-provide="datepicker"/>
+	</div>
+
+	<div class="input-group">
+	<h3 class = "metahead">Last Modified Time:</h3>
+    <input type="text" class="input-small" name="modifystart" data-provide="datepicker"/>
+    <span class="add-on"> to </span>
+    <input type="text" class="input-small" name="modifyend" data-provide="datepicker"/>
+	</div>
+
+	<div class="input-group">
+	<h3 class = "metahead">Creation Author:</h3>
+	<% @creationauthors.each do |c| %>
+	<% if c.creationauthor.nil? %>
+	<%= check_box_tag "creator.None", "None",true %> 
+   <%= label_tag "None" %>
+   <% else %>
+  <%= check_box_tag 'creator.' + c.creationauthor, c.creationauthor, true %> 
+   <%= label_tag c.creationauthor %>
+<%  end
+	end %>	</div>
+
+	<div class="input-group">
+	<h3 class = "metahead">File type:</h3> 
+    <% @filetypes.each do |filetype| %>
+  <%= check_box_tag 'file' + filetype.filetype, filetype.filetype, true %> 
+   <%= label_tag filetype.filetype %>
+<% end %>
+	</div>
+	<div class="input-group">
+	<h3 class = "metahead">File size:</h3>
+	<input type="text" class="input-small" name="filestart"/>
+    <span class="add-on"> to </span>
+    <input type="text" class="input-small" name="fileend"/>
+	</div>
+
+	<div class="form-group">
+    <h3 class = "metahead">Keywords:</h3>
+    <input type="text" class="form-control" id="exampleInputEmail1" placeholder="Enter keywords separated by commas" name = "keywords">
+  </div>
+      <input name = "commit" type = "submit" value = "Query by Metadata Attributes!" class = "btn btn-warning" id = "querybutton">
       </form>
 
 </div>
 	<h3>Query Results</h3>
-	<table class = "timetable">
+	<table class = "table table-striped">
 	  <tr>
 		<th>Guid</th>
 		<th>Name</th>

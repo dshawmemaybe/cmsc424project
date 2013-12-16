@@ -17,12 +17,7 @@ body.tmp {
 	width:958px;
 	height:800px;
 }
-table.victor,td, th {
-	border:2px solid black;
-}
-.table-striped td, .table-striped th {
-	border:none;
-}
+
 td {
 	max-width: 400px;
 	word-wrap:break-word;
@@ -41,4 +36,14 @@ td:hover,td.alt:hover
 #datepicker {
 	margin-top:10px;
 	margin-bottom:10px;
+}
+
+h3.metahead {
+	display:inline-block;
+	width: 230px;
+}
+
+.form-control {
+	display: inline !important;
+	width: 500px !important;
 }

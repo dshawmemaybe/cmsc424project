@@ -5,7 +5,9 @@ class QueriesController < ApplicationController
   # GET /posts
   # GET /posts.json
   def metadataquery
-    @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
+    @dagrs = []
+    @filetypes = Metadata.find_by_sql("SELECT DISTINCT filetype FROM metadatas")
+    @creationauthors = Metadata.find_by_sql("SELECT DISTINCT creationauthor FROM metadatas")
 
     respond_to do |format|
       format.html { render action: "metadataquery", layout: false}
@@ -14,7 +16,109 @@ class QueriesController < ApplicationController
   end
 
   def metadataquerymain
-    @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
+    @dagrslist = []
+    @filetypes = Metadata.find_by_sql("SELECT DISTINCT filetype FROM metadatas")
+    @creationauthors = Metadata.find_by_sql("SELECT DISTINCT creationauthor FROM metadatas")
+
+    @keywords = params[:keywords]
+    @createstart = params[:createstart]
+    @createend = params[:createend]
+    @modifystart = params[:modifystart]
+    @modifyend = params[:modifyend]
+    @filestart = params[:filestart]
+    @fileend = params[:fileend]
+
+    filetypeslist = []
+    creationauthorslist = []
+
+    params.each { |p|
+      if (p[0].to_s.include?("file."))
+        filetypeslist.push(p[1])
+      end
+      if (p[0].to_s.include?("creator."))
+        if (p[1] == "None")
+        creationauthorslist.push("")
+        else
+          creationauthorslist.push(p[1])
+        end
+      end
+    }
+
+    createstring = ""
+    modifystring = ""
+    filesizestring = ""
+    keywordstring = ""
+    filetypesstring = ""
+    creationauthorsstring = ""
+
+    query = "SELECT dagr_guid FROM metadatas WHERE "
+
+    if @createstart == ""
+    else 
+      createstring += " AND filecreationtime >= '#{@createstart}' "
+    end  
+
+    if @createend == ""
+    else 
+      createstring += " AND filecreationtime <= '#{@createend}' "
+    end  
+
+    if @modifystart == ""
+    else 
+      modifystring += " AND lastmodifiedtime >= '#{@modifystart}' "
+    end  
+
+    if @modifyend == ""
+    else 
+      modifystring += " AND lastmodifiedtime <= '#{@modifyend}' "
+    end
+
+    if @filestart == ""
+    else
+      filesizestring += " AND filesizebytes >= #{@filestart} "  
+    end
+
+    if @fileend == ""
+    else
+      filesizestring += " AND filesizebytes <= #{@fileend} "   
+    end
+
+    filetypesstring += " (filetype='#{filetypeslist[0]}' "
+    if (filetypeslist.size == 1)
+      filetypesstring += ')'
+    end
+    1.upto(filetypeslist.size-1) do |i|
+      filetypesstring += " OR filetype='#{filetypeslist[i]}' "
+      if i == filetypeslist.size-1 
+        filetypesstring += ')'
+      end
+    end
+
+    creationauthorsstring += "AND (creationauthor='#{creationauthorslist[0]}'"
+    if (creationauthorslist.size == 1)
+      creationauthorsstring += ')'
+    end
+    1.upto(creationauthorslist.size-1) do |i|
+      creationauthorsstring += " OR creationauthor='#{creationauthorslist[i]}'"
+      if i == creationauthorslist.size-1
+        creationauthorsstring += ')'
+      end
+    end
+
+    query += filetypesstring += createstring += modifystring += filesizestring += keywordstring += creationauthorsstring
+    puts query
+
+
+    @dagrs = []
+    @dagrslist = Metadata.find_by_sql(query)
+    puts "size: #{@dagrslist.size}"
+
+    @dagrslist.each { |dagr|
+      @dagrs.push(Dagr.find_by_sql("SELECT * from dagrs where dagr_guid='#{dagr.dagr_guid}'"))
+
+    }
+
+    @dagrs = @dagrs.flatten
 
     respond_to do |format|
       format.html {}

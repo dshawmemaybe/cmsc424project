@@ -1,7 +1,7 @@
-
+<div class="panel panel-primary">
 <div class = "header"><h3>Listing DAGRs</h3>
 <div class = "section">
-	<table class = "victor">
+	<table class = "table table-striped">
 	  <tr>
 		<th>Guid</th>
 		<th>Name</th>
@@ -34,7 +34,7 @@
 
 <div class = "header"><h3>Listing Media Files</h3>
 <div class = "section">
-	<table class = "victor">
+	<table class = "table table-striped">
 	<tr>
 		<th>Dagr Guid</th>
 		<th>Media Guid</th>
@@ -60,7 +60,7 @@
 
 <div class = "header"><h3>Listing Connections</h3>
 <div class = "section">
-	<table class = "victor">
+	<table class = "table table-striped">
 	<tr>
 	    <th>Parent Guid</th>
       <th>Parent Name</th>
@@ -82,7 +82,7 @@
 
 <div class = "header"><h3>Listing File Metadatas</h3>
 	<div class = "section">
-	<table class = "victor">
+	<table class = "table table-striped">
 	<tr>
 	    <th>Dagr Guid</th>
 	    <th>Type</th>
@@ -108,7 +108,7 @@
 
 <div class = "header"><h3>Listing Keywords</h3>
 	<div class = "section">
-	<table class = "victor">
+	<table class = "table table-striped">
 	<tr>
 	    <th>Dagr Guid</th>
 	    <th>Keyword</th>
@@ -126,7 +126,7 @@
 
 <div class = "header"><h3>Listing Annotations</h3>
 	<div class = "section">
-	<table class = "victor">
+	<table class = "table table-striped">
 	<tr>
 	    <th>Media Guid</th>
 	    <th>Annotation</th>
@@ -145,11 +145,14 @@
 
 <br />
 <script>
-$(".section").hide();
-
+$('.section').hide(300);
 
 $(".header").click(function(){
-   $(".section").hide(300);
-   $(this).children().show(300);
+    if ($('.section').is(':visible')){
+        $('.section').hide(300);
+        $(this).children().show(300);
+    } else {
+        $(this).children().show(300);
+    };
 });
 </script>
