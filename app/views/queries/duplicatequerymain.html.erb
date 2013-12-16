@@ -5,32 +5,25 @@
 	<div class = "panel-body">
 	<div class="input-daterange" id="datepicker">
 	<form accept-charset="UTF-8" action = "duplicatequery"method = "get">
-    <input type="text" class="input-small" name="start" data-provide="datepicker"/>
-    <span class="add-on">to</span>
-    <input type="text" class="input-small" name="end" data-provide="datepicker"/>
-      <input name = "commit" type = "submit" value = "Query!" class = "btn btn-warning" id = "querybutton">
+      <input name = "commit" type = "submit" value = "Identify all of those copycat twins!" class = "btn btn-warning" id = "querybutton">
       </form>
 
 </div>
 	<h3>Query Results</h3>
 	<table class = "timetable">
 	  <tr>
-		<th>Guid</th>
-		<th>Name</th>
-		<th>Creation Time</th>
-		<th>Deletion Time</th>
-		<th>Has Components</th>
-		<th>Deleted</th>
+		<th>Dagr 1 Guid</th>
+		<th>Dagr 1 Name</th>
+		<th>Dagr 2 Guid</th>
+		<th>Dagr 2 Name</th>
 	  </tr>
 
 	<% @dagrs.each do |dagr| %>
 	  <tr>
-		<td><%= dagr.dagr_guid %> </td>
-		<td><%= dagr.name %> </td>
-		<td><%= dagr.dagrcreationtime %> </td>
-		<td><%= dagr.dagrdeletiontime %> </td>
-		<td><%= dagr.has_components %> </td>
-		<td><%= dagr.deleted %> </td>
+		<td><%= dagr.d1g %> </td>
+		<td><%= dagr.d1n %> </td>
+		<td><%= dagr.d2g %> </td>
+		<td><%= dagr.d2n %> </td>
 	  </tr>
 	<% end %>
 	</table>

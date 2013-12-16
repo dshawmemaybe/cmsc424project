@@ -8,7 +8,7 @@ class QueriesController < ApplicationController
     @dagrs = []
     @filetypes = Metadata.find_by_sql("SELECT DISTINCT filetype FROM metadatas")
     @creationauthors = Metadata.find_by_sql("SELECT DISTINCT creationauthor FROM metadatas")
-
+    @keyworddagrs = []
     respond_to do |format|
       format.html { render action: "metadataquery", layout: false}
       format.json { render json: @dagrs }
@@ -20,7 +20,7 @@ class QueriesController < ApplicationController
     @filetypes = Metadata.find_by_sql("SELECT DISTINCT filetype FROM metadatas")
     @creationauthors = Metadata.find_by_sql("SELECT DISTINCT creationauthor FROM metadatas")
 
-    @keywords = params[:keywords]
+    keywords = params[:keywords].split(",")
     @createstart = params[:createstart]
     @createend = params[:createend]
     @modifystart = params[:modifystart]
@@ -119,6 +119,32 @@ class QueriesController < ApplicationController
     }
 
     @dagrs = @dagrs.flatten
+    puts keywords.class
+    keywordquery = "SELECT * from dagrs where dagr_guid in (SELECT dagr_guid from keywords"
+    if keywords.size == 0
+      keywordquery += ")"
+    end
+  
+    if keywords.size >= 1
+      keywordquery += " where keyword='#{keywords[0]}'"
+      if keywords.size == 1
+        keywordquery += " )"
+      end
+    end
+    1.upto(keywords.size-1) do |i|
+      keywordquery += " OR keyword='#{keywords[i]}' "
+      if i == keywords.size - 1
+        keywordquery += ")"
+      end
+    end
+    puts keywordquery
+    @keyworddagrs = Dagr.find_by_sql(keywordquery)
+    puts @keyworddagrs.size
+    puts @keyworddagrs
+    puts "break"
+    puts @dagrs
+
+    @keyworddagrs = @keyworddagrs.flatten
 
     respond_to do |format|
       format.html {}
@@ -127,7 +153,7 @@ class QueriesController < ApplicationController
   end
 
   def duplicatequery
-    @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
+    @dagrs = []
 
     respond_to do |format|
       format.html { render action: "duplicatequery", layout: false}
@@ -136,7 +162,28 @@ class QueriesController < ApplicationController
   end
 
   def duplicatequerymain
-    @dagrs = Dagr.find_by_sql("SELECT * FROM DAGRS")
+    @dagrs = Dagr.find_by_sql("SELECT distinct d1.dagr_guid as d1g, d1.name as d1n, d2.dagr_guid as d2g, d2.name as d2n FROM DAGRS d1, DAGRS d2 where d1.name = d2.name AND d1.dagr_guid <> d2.dagr_guid AND d1.deleted=false AND d2.deleted = false")
+
+    names = Dagr.find_by_sql("SELECT distinct name from dagrs")
+    dagr_guids = []
+    names.each { |name|
+    dagr_guids.push(Dagr.find_by_sql("SELECT dagr_guid, name from dagrs where name='#{name.name}' order by dagr_guid").first)
+    }
+
+    dagr_guids.each{ |dagr_guid|
+      name = dagr_guid.name
+      guid = dagr_guid.dagr_guid
+      remove_guids = Dagr.find_by_sql("SELECT dagr_guid from dagrs where dagr_guid <> '#{guid}' AND name='#{name}'")
+      remove_guids.each {|remove_guid|
+        remove = remove_guid.dagr_guid
+        sql = "DELETE FROM metadatas WHERE dagr_guid='#{remove}'"
+        Metadata.connection.execute(sql)
+
+        sql = "UPDATE dagrs SET deleted=true, dagrdeletiontime='#{Time.now}' where dagr_guid='#{remove}'"
+        Dagr.connection.execute(sql)
+    }
+    }
+
 
     respond_to do |format|
       format.html {}

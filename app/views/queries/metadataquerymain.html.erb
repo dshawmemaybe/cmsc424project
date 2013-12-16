@@ -53,7 +53,7 @@
       </form>
 
 </div>
-	<h3>Query Results</h3>
+	<h3>Query Results by Metadata</h3>
 	<table class = "table table-striped">
 	  <tr>
 		<th>Guid</th>
@@ -65,6 +65,28 @@
 	  </tr>
 
 	<% @dagrs.each do |dagr| %>
+	  <tr>
+		<td><%= dagr.dagr_guid %> </td>
+		<td><%= dagr.name %> </td>
+		<td><%= dagr.dagrcreationtime %> </td>
+		<td><%= dagr.dagrdeletiontime %> </td>
+		<td><%= dagr.has_components %> </td>
+		<td><%= dagr.deleted %> </td>
+	  </tr>
+	<% end %>
+	</table>
+	<h3>Query Results by Keywords</h3>
+	<table class = "table table-striped">
+	  <tr>
+		<th>Guid</th>
+		<th>Name</th>
+		<th>Creation Time</th>
+		<th>Deletion Time</th>
+		<th>Has Components</th>
+		<th>Deleted</th>
+	  </tr>
+
+	<% @keyworddagrs.each do |dagr| %>
 	  <tr>
 		<td><%= dagr.dagr_guid %> </td>
 		<td><%= dagr.name %> </td>

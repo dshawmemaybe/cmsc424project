@@ -11,7 +11,6 @@
 		<th>Deleted</th>
 		<th></th>
 		<th></th>
-		<th></th>
 	  </tr>
 
 	<% @dagrs.each do |dagr| %>
@@ -24,7 +23,6 @@
 		<td><%= dagr.deleted %> </td>
 		<td><%= link_to 'Show', dagr %></td>
 		<td><%= link_to 'Edit', edit_dagr_path(dagr) %></td>
-		<td><%= link_to 'Destroy', dagr, method: :delete, data: { confirm: 'Are you sure?' } %></td>
 	  </tr>
 	<% end %>
 	</table>
